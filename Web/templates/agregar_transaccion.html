@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Transacción</title>
+</head>
+<body>
+    <h1>Agregar Transacción</h1>
+    <form action="{{ url_for('agregar_transaccion') }}" method="post">
+        <label for="ID_Cuentabanco">Cuenta Bancaria:</label>
+        <select id="ID_Cuentabanco" name="ID_Cuentabanco">
+            {% for cuenta in cuentas %}
+                <option value="{{ cuenta['ID_cuentabanco'] }}">{{ cuenta['name'] }}</option>
+            {% endfor %}
+        </select>
+        <label for="ID_Categoria">Categoría:</label>
+        <select id="ID_Categoria" name="ID_Categoria">
+            {% for categoria in categorias %}
+                <option value="{{ categoria['ID_categoria'] }}">{{ categoria['nombre'] }}</option>
+            {% endfor %}
+        </select>
+        <label for="desc">Descripción:</label>
+        <input type="text" id="desc" name="desc">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+        <label for="Monto">Monto:</label>
+        <input type="text" id="Monto" name="Monto">
+        <button type="submit">Agregar</button>
+    </form>
+    <a href="{{ url_for('index') }}">Volver a la lista</a>
+</body>
+</html>

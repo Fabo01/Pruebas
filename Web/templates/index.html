@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Presupuestos</title>
+</head>
+<body>
+    <h1>Lista de Transacciones</h1>
+    <a href="{{ url_for('agregar_cuenta') }}">Agregar Cuenta</a> |
+    <a href="{{ url_for('agregar_usuario') }}">Agregar Usuario</a> |
+    <a href="{{ url_for('agregar_categoria') }}">Agregar Categoría</a> |
+    <a href="{{ url_for('agregar_transaccion') }}">Agregar Transacción</a>
+    <ul>
+        {% for transaccion in transacciones %}
+            <li>{{ transaccion['desc'] }} - {{ transaccion['Monto'] }} - {{ transaccion['fecha'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
