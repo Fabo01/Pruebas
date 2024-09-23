@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Ver Presupuesto</title>
+</head>
+<body>
+    <header>
+        <div class="perfil">
+            <img src="\static/img/user.jpg" alt="Perfil">
+            <p>Usuario: {{ session['user'] }}</p>
+        </div>
+        <h1>{{ banco[2] }} - Presupuesto para {{ categoria[2] }}</h1>
+        <nav class="inicio">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Presupuesto Total: {{ presupuesto[2] }}</h2>
+        <h2>Saldo Restante: {{ presupuesto[3] }}</h2>
+
+        <h3>Transacciones</h3>
+        <table>
+            <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+            </tr>
+            {% for transaccion in transacciones %}
+            <tr>
+                <td>{{ transaccion[3] }}</td>
+                <td>{{ transaccion[5] }}</td>
+                <td>{{ transaccion[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{{ url_for('index') }}">Regresar</a>
+
+        <div class="container-graficos">
+            <h1>Transacciones</h1>
+            <canvas id="lineChart1"></canvas>
+            <canvas id="pieChart1"></canvas>
+    
+            <h1>Resumen Gasto/Ahorro</h1>
+            <canvas id="pieChart2"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Gestor de Presupuestos 2024. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

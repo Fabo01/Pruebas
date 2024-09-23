@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Foro</title>
+</head>
+<body>
+    <header>
+        <div class="perfil">
+            <img src="\static/img/user.jpg" alt="Perfil">
+            <p>Usuario: {{ session['user'] }}</p>
+        </div>
+        <h1>Expande tu conocimiento financiero</h1>
+        <nav class="inicio">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Gestion de Cuentas</a></li>
+                <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <nav class="nav-foro">
+        <ul>
+            <li><a href="{{ url_for('crear_articulo') }}">Crear Articulo</a></li>
+            <li><a href="#">Mis Articulos</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-articulo">
+        
+        <section id="articulos">
+            <h2>Artículos Recientes</h2>
+                {% for articulo in articulos %}
+                <article>
+                    <h2>{{ articulo[1] }}</h2> <!-- Título -->
+                    <p>{{ articulo[2] }}</p>    <!-- Contenido -->
+                    <small>Escrito por: {{ articulo[3] }} el {{ articulo[4] }}</small>
+                </article>
+                <hr>
+                {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Foro de Artículos Informativos. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

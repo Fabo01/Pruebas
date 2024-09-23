@@ -2,18 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Presupuestos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gestor de Presupuestos</title>
 </head>
 <body>
-    <h1>Lista de Transacciones</h1>
-    <a href="{{ url_for('agregar_cuenta') }}">Agregar Cuenta</a> |
-    <a href="{{ url_for('agregar_usuario') }}">Agregar Usuario</a> |
-    <a href="{{ url_for('agregar_categoria') }}">Agregar Categoría</a> |
-    <a href="{{ url_for('agregar_transaccion') }}">Agregar Transacción</a>
-    <ul>
-        {% for transaccion in transacciones %}
-            <li>{{ transaccion['desc'] }} - {{ transaccion['Monto'] }} - {{ transaccion['fecha'] }}</li>
-        {% endfor %}
-    </ul>
+    <header>
+        <div class="perfil">
+            <img src="\static/img/user.jpg" alt="Perfil">
+            <p>Usuario: {{ session['user'] }}</p>
+        </div>
+        <h1>Gestor de Presupuestos</h1>
+        <nav class="inicio">
+            <ul>
+                <li><a href="{{ url_for('ver_articulos') }}">Inicio</a></li>
+                <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Mis Cuentas</h2>
+        <div class="container-cuentas">
+            <a href="{{ url_for('vincular_banco') }}">Nuevo Banco</a>
+            <ul>
+                {% for cuenta in cuentas %}
+                    <li>{{ cuenta[2] }} | <a href="{{ url_for('crear_categoria', cuenta_id=cuenta[0]) }}">Añadir Categoría</a> |
+                                        <a href="{{ url_for('ver_categorias', banco_id=cuenta[0]) }}">ver Categorías</a> | </li>
+                {% endfor %}
+            </ul>
+        </div>
+            <h2>Todas mis Categorias</h2>
+        <div class="container-categorias">
+            <ul>
+                {% for categoria in categorias %}
+                    <li>{{ categoria[2] }} - {{ categoria[1] }} |
+                        <a href="{{ url_for('crear_presupuesto', categoria_id=categoria[0]) }}">Asignar Presupuesto</a> |
+                        <a href="{{ url_for('agregar_transaccion', categoria_id=categoria[0]) }}">Agregar Transacción</a> |
+                        <a href="{{ url_for('ver_presupuesto', categoria_id=categoria[0]) }}">Ver Presupuesto</a> |
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Gestor de Presupuestos 2024. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

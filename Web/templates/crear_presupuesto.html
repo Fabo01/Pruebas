@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
-    <title>Agregar Transacción</title>
+    <title>Crear Presupuesto</title>
 </head>
 <body>
     <header>
@@ -13,17 +12,13 @@
             <img src="\static/img/user.jpg" alt="Perfil">
             <p>Usuario: {{ session['user'] }}</p>
         </div>
-        <h1>Agregar Transacción</h1>
+        <h1>Crear Presupuesto</h1>
     </header>
     <main>
-        <form action="{{ url_for('agregar_transaccion', categoria_id=categoria_id) }}" method="post">
-            <label for="descripcion">Descripción:</label>
-            <input type="text" name="descripcion" required>
-            <label for="monto">Monto:</label>
+        <form action="{{ url_for('crear_presupuesto', categoria_id=categoria_id) }}" method="post">
+            <label for="monto">Monto del Presupuesto:</label>
             <input type="number" name="monto" required>
-            <label for="fecha">Fecha (opcional):</label>
-            <input type="date" name="fecha">
-            <button type="submit">Agregar Transacción</button>
+            <button type="submit">Crear Presupuesto</button>
         </form>
         <a href="{{ url_for('index') }}">Regresar</a>
     </main>
