@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="CSS/articulos.css">
 </head>
 <body>
+    
     <header class="navbar">
         <button id="menu-btn" class="menu-btn">&#9776;</button>
         <div class="logo">
@@ -90,10 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li>
                     <div class="user-dropdown">
                         <img src="img/user.jpg" alt="Perfil" class="user-avatar">
-                        <span>Usuario: <?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+                        <span>Usuario: <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     </div>
                 </li>
-                <li><a href="ver_perfil.php">Perfil</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
